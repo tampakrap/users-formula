@@ -4,7 +4,7 @@ python:
 
 before_install:
   - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh
-  - sudo sh bootstrap_salt.sh
+  - sudo sh bootstrap_salt.sh -P
 
 install:
   # Copy these states
