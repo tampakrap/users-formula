@@ -1,0 +1,7 @@
+name: users
+os: SLES
+os_family: SLES
+version: 20151009
+release: 1
+summary: Formula for users
+description: Formula for users
