@@ -1,5 +1,4 @@
 # vim: sts=2 ts=2 sw=2 et ai
-lskdjfslkdj
 {% from "users/map.jinja" import users with context %}
 {% set used_sudo = [] %}
 {% set used_googleauth = [] %}
