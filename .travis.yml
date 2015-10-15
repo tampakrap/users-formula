@@ -10,8 +10,9 @@ before_install:
 install:
   # Copy these states
   - sudo mkdir -p /srv/salt/states
+  - ls -la
   - sudo cp -r . /srv/salt/states
-  - sudo cp .travis/minion /etc/salt/minion
+  #- sudo cp .travis/minion /etc/salt/minion
   #- sudo service salt-minion restart
 
   # Additional debug help
