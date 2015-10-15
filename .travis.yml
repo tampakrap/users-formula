@@ -5,7 +5,7 @@ python:
 before_install:
   #- sudo apt-get update
   #- curl -L http://bootstrap.saltstack.org | sudo sh -s -- git develop
-  - pip install salt-minion
+  - pip install salt
 
 install:
   # Copy these states
