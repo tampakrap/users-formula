@@ -3,13 +3,13 @@ python:
   - '2.7'
 
 install:
-  - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh
-  - sudo sh bootstrap_salt.sh -PX
-  - sudo cp -r . /srv/salt
-  - sudo curl -L http://www.forkbomb.gr/~tampakrap/top.sls -o /srv/salt/top.sls
+  - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh | sudo sh -- -PX stable 2015.8.1
+  - formula="users"
+  - cp -r $formula /srv/salt
+  - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
 
   # See what kind of travis box you're on to help with making your states compatible with travis
   - sudo salt-call grains.items --local
 
 script:
-  - sudo salt-call state.show_highstate --local --retcode-passthrough -l error
+  - sudo salt-call state.show_sls --local --retcode-passthrough -l error test=True $states
