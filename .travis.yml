@@ -3,7 +3,7 @@ python:
   - '2.7'
 
 install:
-  - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh | sudo sh -- stable 2015.8.1 -PX
+  - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh | sudo sh -s -- stable 2015.8.1 -PX
   - formula="users"
   - cp -r $formula /srv/salt
   - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
