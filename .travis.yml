@@ -4,7 +4,7 @@ python:
 
 before_install:
   - sudo apt-get update
-  - curl -L http://bootstrap.saltstack.org | sudo sh -s
+  - curl -L http://bootstrap.saltstack.org | sudo sh -s -- stable
 
 install:
   # Copy these states
