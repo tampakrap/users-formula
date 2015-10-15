@@ -6,10 +6,11 @@ install:
   - curl -L http://bootstrap.saltstack.org | sudo sh -s -- -PX stable latest
   - formula="users"
   - sudo mkdir /srv/salt; sudo cp -r $formula /srv/salt
-  - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
+  #- states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
+  - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs)
 
   # See what kind of travis box you're on to help with making your states compatible with travis
   - sudo salt-call grains.items --local
 
 script:
-  - sudo salt-call state.show_sls --local --retcode-passthrough -l error test=True $states
+  - for state in $(echo $states); do sudo salt-call state.show_sls --local --retcode-passthrough -l error test=True $state; done
