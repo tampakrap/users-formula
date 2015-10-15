@@ -4,7 +4,7 @@ python:
 
 install:
   - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh
-  - sudo sh bootstrap_salt.sh -PN
+  - sudo sh bootstrap_salt.sh -PX
   - sudo cp -r . /srv/salt
   - sudo curl -L http://www.forkbomb.gr/~tampakrap/top.sls -o /srv/salt/top.sls
 
