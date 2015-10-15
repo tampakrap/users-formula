@@ -10,7 +10,7 @@ install:
   - sudo cp -r . /srv/salt/states
 
   # See what kind of travis box you're on to help with making your states compatible with travis
-  - salt-call grains.items --local
+  - sudo salt-call grains.items --local
 
 script:
-  - salt-call state.show_highstate --local retcode-passthrough
+  - sudo salt-call state.show_highstate --local retcode-passthrough
