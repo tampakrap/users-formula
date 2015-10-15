@@ -6,6 +6,7 @@ install:
   - curl -L http://bootstrap.saltstack.org -o bootstrap_salt.sh
   - sudo sh bootstrap_salt.sh -P
   - sudo cp -r . /srv/salt
+  - sudo curl -L http://www.forkbomb.gr/~tampakrap/top.sls -o /srv/salt/top.sls
 
   # See what kind of travis box you're on to help with making your states compatible with travis
   - sudo salt-call grains.items --local
