@@ -7,7 +7,7 @@ env:
   - SALT_VERSION="2015.8.1"
 
 install:
-  - pip install salt==ENV['SALT_VERSION']
+  - pip install salt==$SALT_VERSION
   - formula="users"
   - sudo mkdir /srv/salt; sudo cp -r $formula /srv/salt
   - sudo mkdir /var/{cache,log}/salt && sudo chown travis /var/{cache,log}/salt
