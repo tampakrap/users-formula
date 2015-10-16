@@ -7,6 +7,7 @@ install:
   - pip install salt
   - formula="users"
   - sudo mkdir /srv/salt; sudo cp -r $formula /srv/salt
+  - sudo chown travis /var/cache/salt
   - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
 
   # See what kind of travis box you're on to help with making your states compatible with travis
