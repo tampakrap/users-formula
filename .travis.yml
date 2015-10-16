@@ -8,16 +8,15 @@ env:
 before_install:
   # name of our formula
   - tmp=${TRAVIS_REPO_SLUG##*/}; FORMULA=${tmp%%-*}
-  - echo $FORMULA
   # create directories and put necessary files inside
   - sudo mkdir /{etc,srv,/var/{cache,log}}/salt; sudo chown travis /{etc,srv,/var/{cache,log}}/salt
   - ls -la /etc/salt /var/cache/salt /var/log/salt /srv/salt
-  - sudo cp -r $formula /srv/salt
+  - sudo cp -r $FORMULA /srv/salt
 install:
   - pip install salt==$SALT_VERSION
 after_install:
   # find all the *.sls files
-  - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$formula.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
+  - states=$(find /srv/salt -name '*.sls' | while read i; do tmp=$FORMULA.${i##*/}; echo ${tmp%.*}; done | xargs | sed -e 's/ /,/g')
   # See what kind of travis box you're on to help with making your states compatible with travis
   - salt-call grains.items --local
 script:
