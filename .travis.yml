@@ -2,21 +2,18 @@ language: python
 python:
   - '2.7'
 env:
-  #- SALT_VERSION="2015.5.6"
-  #- SALT_VERSION="2015.8.0"
+  - SALT_VERSION="2015.5.6"
+  - SALT_VERSION="2015.8.0"
   - SALT_VERSION="2015.8.1"
 before_install:
   # name of our formula
   - tmp=${TRAVIS_REPO_SLUG##*/}; FORMULA=${tmp%%-*}
   # create directories and put necessary files inside
   - sudo mkdir /{etc,srv,/var/{cache,log}}/salt; sudo chown travis /{etc,srv,/var/{cache,log}}/salt
-  - cp -r $FORMULA /srv/salt
-  # this not really needed, but it silences one error message
-  - echo "travis-ci" > /etc/salt/minion_id
+  - cp -r $FORMULA /srv/salt && echo "travis-ci" > /etc/salt/minion_id
   # install dependencies
   - DEPENDENCIES="vim"
   - for dep in $DEPENDENCIES; do git clone git://github.com/saltstack-formulas/${dep}-formula; cp -r ${dep}-formula/$dep /srv/salt; done
-  - ls -la /srv/salt
 install:
   - pip install salt==$SALT_VERSION
 before_script:
